@@ -36,7 +36,7 @@ function getPasswordString( arrOfCharsArr, totalChars ){
   }
 
 
-  // Helper functions
+  // Helper functions to randomize characters
 
   // Gets a random integer number from 0 to indexLength
   function getRandomIndex(indexLength) {
@@ -47,7 +47,7 @@ function getPasswordString( arrOfCharsArr, totalChars ){
 
   } 
 
-  // Randomizes the string to ensure the first chars are more random
+  // Randomizes the string to ensure the guaranteed chars randomly distributed
   function randomizeStr(str) {
     let strArr = [];
     let rtnStr = "";
@@ -122,7 +122,6 @@ function generatePassword() {
       pswd = getPasswordString( charSetArr, charCount );
     } catch(e) {
       alert(e);
-      console.log(e);
     } 
   } else {
     alert("Your password must be between 8 and 128!");
@@ -134,6 +133,15 @@ function generatePassword() {
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
+document.getElementById("passwordForm").onkeydown = function(k) {
+  if (k.code == "Enter"){
+    writePassword();
+    
+    // Need to re-write this for newer browsers
+    event.preventDefault();
+  }
+}
 
 // Write password to the #password input
 function writePassword() {
