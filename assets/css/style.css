@@ -130,6 +130,13 @@ form {
   text-align: left;
 }
 
+.label-prompt {
+  font-size: 8pt;
+  margin: 1px;
+  margin-bottom: 4px;
+  padding-left: 6px;
+}
+
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;

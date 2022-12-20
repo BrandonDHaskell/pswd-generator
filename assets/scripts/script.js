@@ -111,6 +111,7 @@ function setCharSetsArray(){
 }
 
 function generatePassword() {
+  let pswd = "";
   let charCount = 0;
 
   charCount = document.getElementById("charCount").value;
@@ -118,14 +119,16 @@ function generatePassword() {
   if (charCount >= 8 && charCount <= 128) {
     setCharSetsArray();
     try {
-      test = getPasswordString( charSetArr, charCount );
-      console.log(test);
+      pswd = getPasswordString( charSetArr, charCount );
     } catch(e) {
+      alert(e);
       console.log(e);
     } 
   } else {
     alert("Your password must be between 8 and 128!");
   }
+
+  return pswd;
 }
 // console.log(document.querySelector("specChars").checked);
 

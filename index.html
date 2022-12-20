@@ -22,7 +22,10 @@
           <div class="checklist">
           <h3>Characters</h3>
             <label for="charCount">Number:</label><br>
-            <input type="number" id="charCount" name="charCount"/><br>
+            <div>
+              <input type="number" id="charCount" name="charCount" size="4" min="8", max="128"/><br>
+              <p class="label-prompt">8 - 128</p>
+            </div>
             <input type="checkbox" id="specChars" name="specChars" value="specChars"/>
             <label for="specChars">Special</label><br>
             <input type="checkbox" id="numChars" value="numChars"/>
