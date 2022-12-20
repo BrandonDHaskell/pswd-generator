@@ -4,18 +4,85 @@ const capChars = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 const lwrChars = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
 
 // An empty array used for password generation
-var charSetArr = [];
+const charSetArr = [];
 
-// Gets a random integer number from 0 to indexLength
-function getRandomIndex(indexLength) {
-  
-  // This code should be modified if there is a better randomizer available
-  return Math.floor(Math.random() * indexLength);
 
-}
-
-function getPasswordString( arrOfCharArr ){
+// This function expects a two dimensional array of characters and returns a string
+// throws errors if:
+//    any dimensions of the array is < 1 element
+//    the chars to return is less than the set(s) of characters
+function getPasswordString( arrOfCharsArr, totalChars ){
+  let charList = [];
   let pswdStr = "";
+  let counter = 0;
+
+  // Error handling
+
+  // THROW ERROR: if arrOfCharsArr is empty then there are no characters to use
+  if (arrOfCharsArr.length == 0) {
+    throw "The array of character sets is empty!";
+  }
+
+  // THROW ERROR: if the number of character sets is smaller than the 
+  if (arrOfCharsArr.length > totalChars) {
+    throw "The required character sets is larger than the password size!";
+  }
+
+  // THROW ERROR: if any character set is empty
+  for (var i = 0; i < arrOfCharsArr.length; i++) {
+    if ( arrOfCharsArr[i].length == 0 ) {
+      throw "All character sets must contain at least 1 character!";
+    }
+  }
+
+
+  // Helper functions
+
+  // Gets a random integer number from 0 to indexLength
+  function getRandomIndex(indexLength) {
+    
+    // This code should be modified if there is a better randomizer available
+    // Math.random() may not be the best in some use cases
+    return Math.floor(Math.random() * indexLength);
+
+  } 
+
+  // Randomizes the string to ensure the first chars are more random
+  function randomizeStr(str) {
+    let strArr = [];
+    let rtnStr = "";
+
+    strArr = str.split("");
+    strArr.sort(function() {
+      return Math.random();
+    });
+
+    rtnStr = strArr.join("");
+    return rtnStr; 
+  }
+
+
+  // Begin building password
+
+  // Garantee at least 1 occurence of each character set provided
+  // and builds a one dimensional array of characters
+  for (var i = 0; i < arrOfCharsArr.length; i++) {
+    pswdStr += arrOfCharsArr[i][ getRandomIndex(arrOfCharsArr[i].length) ];
+    charList = charList.concat(arrOfCharsArr[i]);
+    counter++;
+  }
+
+  // randomly select from the entire set of characters to build the rest if the
+  // password
+  while (counter < totalChars) {
+    pswdStr += charList[ getRandomIndex( charList.length ) ];
+    counter++;
+  }
+
+  // Randomize string to ensure first chars are random too  
+  pswdStr = randomizeStr(pswdStr);
+
+  return pswdStr;
 }
 
 // The if statements below build an array of arrays of the chars based on user input
@@ -40,14 +107,17 @@ if (true) {
   charSetArr.push(lwrChars);
 }
 
+console.log( charSetArr );
 
 
-// if the charSetArr is empty then something went terribly wrong and we should end the program
-if (charSetArr.length == 0) {
-  alert("Somethting went terrible wrong and your password was not generated!\nPlease try again or refresh the page.");
+var test = "";
+
+try {
+  test = getPasswordString( charSetArr, 128 );
+  console.log(test);
+} catch(e) {
+  console.log(e);
 }
-
-// if the array is not empty, we continue...
 
 
 
