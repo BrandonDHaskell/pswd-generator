@@ -118,6 +118,18 @@ button[disabled] {
   overflow: hidden;
 }
 
+/* added formatting for form elements */
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.checklist {
+  text-align: left;
+}
+
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;

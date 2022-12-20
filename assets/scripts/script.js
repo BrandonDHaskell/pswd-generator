@@ -3,14 +3,14 @@ const numChars = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 const capChars = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ]
 const lwrChars = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
 
-// An empty array used for password generation
-const charSetArr = [];
+var charSetArr = []; // holds the set(s) of characters to generate a password
 
 
 // This function expects a two dimensional array of characters and returns a string
+// of random characters to be used as a password
 // throws errors if:
-//    any dimensions of the array is < 1 element
-//    the chars to return is less than the set(s) of characters
+//    -any dimensions of the array is < 1 element
+//    -the total chars to return is less than the set(s) of characters
 function getPasswordString( arrOfCharsArr, totalChars ){
   let charList = [];
   let pswdStr = "";
@@ -58,6 +58,7 @@ function getPasswordString( arrOfCharsArr, totalChars ){
     });
 
     rtnStr = strArr.join("");
+
     return rtnStr; 
   }
 
@@ -65,7 +66,7 @@ function getPasswordString( arrOfCharsArr, totalChars ){
   // Begin building password
 
   // Garantee at least 1 occurence of each character set provided
-  // and builds a one dimensional array of characters
+  // and build a one dimensional array of characters
   for (var i = 0; i < arrOfCharsArr.length; i++) {
     pswdStr += arrOfCharsArr[i][ getRandomIndex(arrOfCharsArr[i].length) ];
     charList = charList.concat(arrOfCharsArr[i]);
@@ -86,42 +87,48 @@ function getPasswordString( arrOfCharsArr, totalChars ){
 }
 
 // The if statements below build an array of arrays of the chars based on user input
+function setCharSetsArray(){
+  charSetArr = [];
+  // Add special characters check
+  if (document.getElementById("specChars").checked) {
+    charSetArr.push(specChars);
+  }
 
-// Add special characters check
-if (true) {
-  charSetArr.push(specChars);
+  // Add numerical characters check
+  if (document.getElementById("numChars").checked) {
+    charSetArr.push(numChars);
+  }
+
+  // Add numerical characters check
+  if (document.getElementById("capChars").checked) {
+    charSetArr.push(capChars);
+  }
+
+  // Add numerical characters check
+  if (document.getElementById("lwrChars").checked) {
+    charSetArr.push(lwrChars);
+  }
 }
 
-// Add numerical characters check
-if (true) {
-  charSetArr.push(numChars);
+function generatePassword() {
+  let charCount = 0;
+
+  charCount = document.getElementById("charCount").value;
+
+  if (charCount >= 8 && charCount <= 128) {
+    setCharSetsArray();
+    try {
+      test = getPasswordString( charSetArr, charCount );
+      console.log(test);
+    } catch(e) {
+      console.log(e);
+    } 
+  } else {
+    alert("Your password must be between 8 and 128!");
+  }
 }
+// console.log(document.querySelector("specChars").checked);
 
-// Add numerical characters check
-if (true) {
-  charSetArr.push(capChars);
-}
-
-// Add numerical characters check
-if (true) {
-  charSetArr.push(lwrChars);
-}
-
-console.log( charSetArr );
-
-
-var test = "";
-
-try {
-  test = getPasswordString( charSetArr, 128 );
-  console.log(test);
-} catch(e) {
-  console.log(e);
-}
-
-
-
-/*
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -136,4 +143,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-*/
