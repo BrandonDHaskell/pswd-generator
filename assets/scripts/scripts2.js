@@ -203,10 +203,38 @@ let passwordGenerator = {
         return true;
     },
 
+    promptForNumber : function(){
+        var input = "";
+
+        return prompt("Enter a number between 8 - 128:");
+
+    },
+
+    promptForData : function(promptText){
+        return confirm(promptText);
+    },
+
     getInputFromPrompts : function() {
-        
-        
-        alert("Need to add code here!");
+        strSpecialChar = "Include special character?";
+        strNumChar = "Include numbers?";
+        strCapsChar = "Include capital letter?";
+        strLwrChar = "Include lower case letters?";
+        var formDataObj = {"meta" : {}, "data" : {} };
+
+        formDataObj.meta["charCount"] = this.promptForNumber();
+        if ( this.promptForData(strSpecialChar) ){
+            formDataObj.data["specChars"] = "specChars";
+        }
+        if ( this.promptForData(strNumChar) ){
+            formDataObj.data["numChars"] = "numChars";
+        }
+        if ( this.promptForData(strCapsChar) ){
+            formDataObj.data["capChars"] = "capChars";
+        }
+        if ( this.promptForData(strLwrChar) ){
+            formDataObj.data["lwrChars"] = "lwrChars";
+        }
+        return formDataObj;
     },
 
     generatePassword : function( formDataObjParam ){
@@ -286,8 +314,17 @@ function writePassword() {
 
 }
 
+// Clear form enable prompting to continue with console demo
+document.getElementById("enablePrompting").disable = false;
+
 // Add event listener to generate button
+function clearEnablePrompting(){
+    document.getElementById("enablePrompting").disable = false;
+}
+document.onload = clearEnablePrompting();
 generateBtn.addEventListener("click", writePassword);
+
+
 
 // Console log demo - cyrillic
 console.log("Adding 'charTypeList2' to passwordGenerator using 'setPasswordCharacterTypeList' function.");

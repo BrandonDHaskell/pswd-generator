@@ -7,7 +7,8 @@
     <title>Password Generator</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body>
+  <!-- Clear form data to prevent prompting during console log demo -->
+  <body onload="document.passwordForm.reset();">
     <div class="wrapper">
       <header>
         <h1>Password Generator</h1>
@@ -18,7 +19,7 @@
         </div>
 
         <!-- added form for charact type inputs -->
-        <form id="passwordForm">
+        <form id="passwordForm" name="passwordForm">
           <div class="checklist">
             <h3>Characters</h3>
             <div>
