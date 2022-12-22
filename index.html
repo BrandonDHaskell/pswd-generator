@@ -20,7 +20,12 @@
         <!-- added form for charact type inputs -->
         <form id="passwordForm">
           <div class="checklist">
-          <h3>Characters</h3>
+            <h3>Characters</h3>
+            <div>
+              <input type="checkbox" id="enablePrompting" name="enablePrompting"/>  
+              <label for="enablePrompting">Enable Prompting</label><br>
+              <p class="label-prompt">Enables window prompting. Form is ignored.</p>
+            </div>
             <label for="charCount">Number:</label><br>
             <div>
               <input type="number" id="charCount" name="charCount" size="4" min="8", max="128"/><br>

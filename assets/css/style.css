@@ -133,7 +133,7 @@ form {
 .label-prompt {
   font-size: 8pt;
   margin: 1px;
-  margin-bottom: 4px;
+  padding-bottom: 10px;
   padding-left: 6px;
 }
 

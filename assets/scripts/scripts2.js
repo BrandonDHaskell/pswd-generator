@@ -203,6 +203,12 @@ let passwordGenerator = {
         return true;
     },
 
+    getInputFromPrompts : function() {
+        
+        
+        alert("Need to add code here!");
+    },
+
     generatePassword : function( formDataObjParam ){
         var pswd = "";
         var counter = 0;
@@ -210,12 +216,19 @@ let passwordGenerator = {
         var charList = [];
         var formDataObj = {};
 
-        if(formDataObjParam === undefined){
-            formDataObj = Object.assign(this.getFormData());
+        // Enabled prompting for assignment criteria
+        if( document.getElementById("enablePrompting").checked ){
+            formDataObj = this.getInputFromPrompts();
         } else {
-            formDataObj = Object.assign(formDataObjParam);
+            
+            // Additional features added
+            if(formDataObjParam === undefined){
+                formDataObj = Object.assign(this.getFormData());
+            } else {
+                formDataObj = Object.assign(formDataObjParam);
+            }
         }
-        
+
         if( !this.validNumber( formDataObj )){
             alert("Number must be an integer between 8 - 128!");
             return pswd;
