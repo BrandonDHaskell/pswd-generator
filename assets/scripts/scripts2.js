@@ -185,8 +185,19 @@ let passwordGenerator = {
         return charArr;
     },
 
+    // Testing if input is an integer number
     validNumber : function( formDataObj ){
-        if( parseInt(formDataObj.meta.charCount) < 8 || parseInt(formDataObj.meta.charCount) > 128 ){
+        var test = Number.parseFloat(formDataObj.meta.charCount);
+        // Must be a number
+        if( Number.isNaN(test) ) {
+            return false;
+
+        // Must be an integer, this step tests for a decimal entry
+        } else if ( (test - Math.floor(test)) > 0 ) {
+            return false;
+
+        // Must be within range
+        } else if( test < 8 || test > 128 ){
             return false;
         }
         return true;
@@ -206,7 +217,7 @@ let passwordGenerator = {
         }
         
         if( !this.validNumber( formDataObj )){
-            alert("Number must be between 8 - 128!");
+            alert("Number must be an integer between 8 - 128!");
             return pswd;
         }
 
@@ -217,6 +228,7 @@ let passwordGenerator = {
         matchList = this.characterTypeMatches(formDataObj.data);
         if( Object.keys(matchList).length === 0 &&
             !this.isImpossibleCondition(formDataObj.data, formDataObj.meta["charCount"], formDataObj.meta["includeOneOfEach"]) ) {
+            alert("Too many character types for the given password length! It is not possible to generate a password!\n\nPlease update the criteria.");
             return pswd;
         }
 
