@@ -12,21 +12,26 @@
 
 [See Deployed Site](https://bhaskell7901.github.io/pswd-generator/)
 
-The Password Generator application takes user input from an HTML form to construct a random password using a defined list of characters set by the user.  User input is used to determine how many characters the password should be and what chracters should be used to generate the password (e.g. uppercase, lowercase, numbers, special, etc.).
+Welcome to the Password Generator!  Feel free to try it out at the deployed site above.  You can use the form to generate a password or you can go old school and use prompts to generate a password.  Just check the **Enable Prompting** checkbox and click the **Generate Password** button.
 
-Your GitHub profile is an extremely important aspect of your public identity as a developer. A well-crafted one allows you to show off your work to other developers as well as potential employers. An important component of your GitHub profile—and one that many new developers often overlook—is the README.md file.
 
-The quality of a README often differentiates a good project from a bad project. A good one takes advantage of the opportunity to explain and showcase what your application does, justify the technologies used, and even talk about some of the challenges you faced and features you hope to implement in the future. A good README helps you stand out among the large crowd of developers putting their work on GitHub.
 
-There's no one right way to structure a good README. There is one very wrong way, however, and that is to not include a README at all or to create a very anemic one. This guide outlines a few best practices. As you progress in your career, you will develop your own ideas about what makes a good README.
+The Password Generator takes a set of character lists and definition criteria to construct a random password.  Three objects are used: the ```passwordGenerator``` object, the ```characterTypeList``` object, and the ```formDataObj``` object.  The ```passwordGenerator``` takes the ```characterTypeList``` and the ```formDataObj``` as inputs to generate a password.
 
-At a minimum, your project README needs a title and a short description explaining the what, why, and how. What was your motivation? Why did you build this project? (Note: The answer is not "Because it was a homework assignment.") What problem does it solve? What did you learn? What makes your project stand out? 
+The Password Generator can take input
 
-Lastly, if your project is deployed, include a link to the deployed application here.
 
-If you're new to Markdown, read the GitHub guide on [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
+The character lists are defined as a ```characterTypeList``` object, and can be passed to the ```passwordGenerator``` object to define what possible characters can be used to generate password.  The definition criteria are defined in a ```formDataObj``` and determine what characters from the ```characterTypeList``` should be used to generate a password.  The ```passwordGenerator``` object uses ```get``` and ```set``` functions to set the character lists and return a copy of the character list currently set in the ```passwordGenerator```.  The ```formDataObj``` can be generator
 
-If you need an example of a good README, check out [the VSCode repository](https://github.com/microsoft/vscode).
+User input is used to determine how many characters the password should be and what chracters should be used to generate the password (e.g. uppercase, lowercase, numbers, special, etc.).
+
+
+
+Inputs from 3 sources:
+* Window prompts
+* HTML form
+* Object passing through set functions
+
 
 
 ![Site Langing Page](./site.gif)
