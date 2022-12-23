@@ -161,6 +161,8 @@ Three ways to get input:
 
 To use the Password Generator, just navigate to the [Live Site](https://bhaskell7901.github.io/pswd-generator/).  Then use the options in the form to determine how you want to generate a password.
 
+![Password Generator image](https://github.com/bhaskell7901/pswd-generator/blob/main/assets/images/pswd-generator.png)
+
 **Enable Prompting** - select this option if you want to be prompted for input.  Form data will be ignored when generating passwords through prompting.
 
 **Number** - the number of characters to use in your password.
@@ -172,6 +174,8 @@ To use the Password Generator, just navigate to the [Live Site](https://bhaskell
 **Caps** - captial letters.
 
 **Lower** - lower case letters.
+
+Click *Generate Password* to get your password!
 
 
 ## Learning Points 
