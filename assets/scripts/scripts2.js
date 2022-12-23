@@ -63,22 +63,20 @@ let passwordGenerator = {
     characterTypes : {},
     
     setPasswordCharacterTypeList : function(obj) {
-        this.characterTypesLists = Object.assign(obj);
-        this.hasCharLists = true;
-    },
+        // create a new copy of the input object
+        var test = Object.assign(obj);
 
-    setCharacterTypes : function(obj) {
-        this.characterTypesLists = Object.assign(obj)
+        if( this.hasFormattedTypeLists(obj) ){ 
+            this.characterTypesLists = Object.assign(obj);
+            this.hasCharLists = true;
+            return true;
+        }
+        return false;
     },
 
     getPasswordCharacterTypeList : function(){
         let ctl = characterTypesLists;
         return ctl;
-    },
-
-    getCharacterTypes() {
-        let ct = characterTypes;
-        return ct;
     },
 
     getFormData : function(){
@@ -204,10 +202,8 @@ let passwordGenerator = {
     },
 
     promptForNumber : function(){
-        var input = "";
 
         return prompt("Enter a number between 8 - 128:");
-
     },
 
     promptForData : function(promptText){
@@ -314,7 +310,8 @@ function writePassword() {
 
 }
 
-// Clear form enable prompting to continue with console demo
+// Clear the form enable prompting option to continue with console demo
+// it can remain checked during a soft page refresh and breaks the demo
 document.getElementById("enablePrompting").disable = false;
 
 // Add event listener to generate button
