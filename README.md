@@ -4,7 +4,7 @@ Welcome to the Password Generator!  Feel free to try it out at the deployed site
 
 Use the form (or the prompts) to set the criteria for your password (e.g., having special characters, only capital letter, etc.).  You can also see a ```console``` demo of the object handling to generate passwords using characters in other languages.  Be sure to use your dev tools to check it out.
 
-See the [Deployed Site](https://bhaskell7901.github.io/pswd-generator/)
+See the [Deployed Site](https://BrandonDHaskell.github.io/pswd-generator/)
 
 
 ## Table of Contents
